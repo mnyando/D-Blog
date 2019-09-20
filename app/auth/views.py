@@ -5,3 +5,6 @@ from app.auth import auth
 def login():
     return render_template('auth/login.html')
 
+@auth.route('/signup')
+def signup():
+    return render_template('auth/signup.html')
