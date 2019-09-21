@@ -1,25 +1,14 @@
 {% extends 'base.html'%}
-
+{% import 'bootstrap/wtf.html' as wtf%}
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <form action="/login" method="POST">
-                <div class="form-group">
-                    <label>User Name</label>
-                    <input type="text" class="form-control" placeholder="User Name" name="username">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" placeholder="Password" name="password">
-                </div>
-                <button type="submit" class="btn btn-info btn-sm">Log In</button><p>Or Sign UP here</p>
-            </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6"id="login">
+                <h3 class="text-center"><i class="fas fa-user-plus"></i></i>&nbsp; <strong>Sign Up</strong></h3>
+                {{ wtf.quick_form(form) }}
+            </div>
+            <div class="col-md-3"></div>
         </div>
-        <div class="col-md-3"></div>
     </div>
-</div>
-    
-
 {% endblock %}
