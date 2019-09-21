@@ -1,5 +1,5 @@
 from flask import render_template,flash, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user,login_required
 from app.auth import auth
 from app.models import User
 from .forms import RegForm,LoginForm
@@ -23,4 +23,10 @@ def signup():
         user.save()
         return  redirect(url_for('auth.login'))
     return render_template('auth/signup.html',registration_form=form )
+
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("main.index"))
     
