@@ -1,6 +1,7 @@
 from . import db,login_manager
 from flask_login import current_user,UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
+from datetime import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -32,6 +33,7 @@ class User (UserMixin,db.Model):
     profile_pic_path = db.Column(db.String())
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     hashed_password = db.Column(db.String(255),nullable = False)
+    blog = db.relationship('Blog', backref='user', lazy='dynamic')
     
     @property
     def set_password(self):
@@ -52,7 +54,24 @@ class User (UserMixin,db.Model):
         db.session.delete(self)
         db.session.commit()
 
-
-
     def __repr__(self):
         return "User: %s" %str(self.username)
+
+class Blog(db.Model):
+    __tablename__ = 'blogs'
+    id = db.Column(db.Integer,primary_key=True)
+    title = db.Column(db.String(255),nullable=False)
+    content = db.Column(db.Text(),nullable=False)
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.remove(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f'Blog {self.title}'
