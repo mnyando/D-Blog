@@ -2,17 +2,19 @@
 
 {% block content %}
     <div class="container">
-        <h1 class="text-center"> Welcome to my blog</h1>
+        <h1 class="text-center mb-2">{{user.blog.count()}} Posts by {{ user.username }} </h1>
         <div class="row">
+            <div class="col-md-2"></div>
             <div class="col-md-8">
                 {% for blog in blogs.items %}
                     <hr>
                     <div class="row">
                         <div class="col-md-7">
-                            <p>By  <a href="{{url_for('main.user_posts',username = blog.user.username)}}"><span style="color: blue">{{blog.user.username}}</span> </a>  on {{blog.posted.strftime('%d-%m-%Y')}}</p>
+                            <p>By <span style="color: blue">{{blog.user.username}}</span>  on {{blog.posted.strftime('%d-%m-%Y')}}</p>
                             <h3>Tittle: <a href="{{url_for('main.blog',id = blog.id)}}">{{blog.title}}</a></h3>
                             <p>{{blog.content}}</p>
                             <p>{{blog.comment.count()}} Comments</p>
+
                         </div>
                         <div class="col-md-5">
                             <form class="form-inline" action="{{url_for('main.comment',blog_id = blog.id)}}" method="POST">
@@ -33,9 +35,9 @@
                 {% for page_num in blogs.iter_pages(left_edge = 1, right_edge = 1, left_current=1, right_current = 2) %}
                     {% if page_num %}
                         {% if blogs.page == page_num %}
-                            <a href="{{url_for('main.index',page = page_num)}}" class="btn btn-sm btn-info mb-2">{{ page_num }}</a>
+                            <a href="{{url_for('main.user_posts',username = user.username,page = page_num)}}" class="btn btn-sm btn-info mb-2">{{ page_num }}</a>
                         {% else%}
-                        <a href="{{url_for('main.index',page = page_num)}}" class="btn btn-sm btn-outline-info mb-2">{{ page_num }}</a>
+                        <a href="{{url_for('main.user_posts',username = user.username,page = page_num)}}" class="btn btn-sm btn-outline-info mb-2">{{ page_num }}</a>
                         {% endif %}
                     {% else%}
                         ...
@@ -43,25 +45,7 @@
                 {% endfor %}  
 
             </div>
-            <div class="col-md-4">
-                <h4>Here is a Quote for you by: <span style="color: blue">{{quote.author}}</span> </h4>
-                <p>{{quote.quote}}</p>
-                {% for message in get_flashed_messages() %}
-                <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{ message }}
-                </div>
-                {% endfor %}
-                <form class="form-inline" action="{{url_for('main.subscribe')}}" method="POST">
-                    <div class="md-form form-group">
-                        <label for="form92">Enter Email Address...</label>
-                        <input type="email"  class="form-control" name ="subscriber" required>
-                    </div>
-                    <div class="md-form form-group">
-                        <button class="btn btn-sm btn-outline-info">Subscribe</button>
-                    </div>
-                </form>
-            </div>
+            <div class="col-md-2"></div>
         </div>
     </div>
 {% endblock %}
