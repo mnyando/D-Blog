@@ -6,6 +6,23 @@ from werkzeug.security import generate_password_hash,check_password_hash
 def load_user(user_id):
     return User.query.get(user_id)
 
+class Role(db.Model):
+    __tablename__ = 'roles'
+
+    id = db.Column(db.Integer,primary_key = True)
+    name = db.Column(db.String(255))
+    users = db.relationship('User',backref = 'role',lazy="dynamic")
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f'User {self.name}'
+
 class User (UserMixin,db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key = True)
@@ -13,6 +30,7 @@ class User (UserMixin,db.Model):
     email = db.Column(db.String(255), unique = True,nullable = False)
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
+    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     hashed_password = db.Column(db.String(255),nullable = False)
     
     @property
