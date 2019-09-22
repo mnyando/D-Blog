@@ -22,7 +22,7 @@ def signup():
     if form.validate_on_submit():
         user = User(username=form.username.data, email = form.email.data, password=form.password.data)
         user.save()
-        mail_message("Welcome to Pitch-World","email/welcome",user.email,user=user)
+        mail_message("Welcome to D-Blog","email/welcome",user.email,user=user)
         return  redirect(url_for('auth.login'))
     return render_template('auth/signup.html',registration_form=form )
 
