@@ -89,16 +89,17 @@ class Comment(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     comment = db.Column(db.String)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
-    post_id = db.Column(db.Integer,db.ForeignKey("blogs.id"))
+    blog_id = db.Column(db.Integer,db.ForeignKey("blogs.id"))
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
 
-    def save_comment(self):
+    def save(self):
         db.session.add(self)
         db.session.commit()
 
-    def delete_comment(self):
-        db.session.delete(self)
+    def delete(self):
+        db.session.remove(self)
         db.session.commit()
+
 
     def __repr__(self):
         return f'Comment {self.comment}'
