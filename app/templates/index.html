@@ -14,18 +14,18 @@
                             <p>Posted: {{blog.posted.strftime('%d-%m-%Y')}}</p>
                         </div>
                         <div class="col-md-6">
-                            <form class="form-inline" action="/comment" method="POST">
+                            <form class="form-inline" action="{{url_for('main.comment',blog_id = blog.id)}}" method="POST">
                                 <div class="md-form form-group">
                                     <!-- <i class="fa fa-lock prefix"></i> -->
                                     <label for="form92">Type your comment</label>
-                                    <input type="text"  class="form-control" name ="comment">
+                                    <input type="text"  class="form-control" name ="newcomment" required>
                                 </div>
                                 <div class="md-form form-group">
                                     <button class="btn btn-sm btn-outline-info">Comment</button>
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div>  
                     <hr>    
                 {% endfor %}   
             </div>
