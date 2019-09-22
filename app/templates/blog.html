@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center"> Welcome to my blog</h1>
+        <div class="row">
+            <div class="col-md-9">
+                <hr>
+                <div class="row">
+                    <div class="col-md-7">
+                        {% for message in get_flashed_messages() %}
+                        <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ message }}
+                        </div>
+                        {% endfor %}
+                        <p>By <span style="color: blue">{{blog.user.username}}</span>  on {{blog.posted.strftime('%d-%m-%Y')}}</p>
+                        <h3>Tittle: {{blog.title}}</h3>
+                        <p>{{blog.content}}</p>
+                        <p>{{blog.comment.count()}} Comments</p>
+                    </div>
+                </div>  
+                <hr>      
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+{% endblock %}
