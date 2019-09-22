@@ -9,9 +9,9 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-7">
-                            <p>Tittle: {{blog.title}}</p>
+                            <p>By <span style="color: blue">{{blog.user.username}}</span>  on {{blog.posted.strftime('%d-%m-%Y')}}</p>
+                            <h3>Tittle: {{blog.title}}</h3>
                             <p>{{blog.content}}</p>
-                            <p>Posted: {{blog.posted.strftime('%d-%m-%Y')}}</p>
                             <p>{{blog.comment.count()}} Comments</p>
                         </div>
                         <div class="col-md-5">
@@ -33,7 +33,13 @@
             <div class="col-md-4">
                 <p>{{quote.author}}</p>
                 <p>{{quote.quote}}</p>
-                <form class="form-inline" action="" method="POST">
+                {% for message in get_flashed_messages() %}
+                <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+                </div>
+                {% endfor %}
+                <form class="form-inline" action="{{url_for('main.subscribe')}}" method="POST">
                     <div class="md-form form-group">
                         <label for="form92">Enter Email Address...</label>
                         <input type="email"  class="form-control" name ="subscriber" required>
