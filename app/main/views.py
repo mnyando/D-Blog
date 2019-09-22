@@ -1,10 +1,11 @@
 from flask import render_template,redirect,url_for,abort,request
 from app.main import main
-from app.models import User,Blog,Comment
+from app.models import User,Blog,Comment,Subscriber
 from .forms import UpdateProfile,CreateBlog
 from .. import db
 from app.requests import get_quotes
 from flask_login import login_required,current_user
+from ..email import mail_message
 
 @main.route('/')
 def index():
@@ -55,4 +56,13 @@ def comment(blog_id):
     new_comment = Comment(comment = comment, user_id = current_user._get_current_object().id, blog_id=blog_id)
     new_comment.save()
     return redirect(url_for('main.index',comment=comment))
+
+@main.route('/subscribe', methods = ['POST','GET'])
+def subscribe():
+    email = request.form.get('subscriber')
+    new_subscriber = Subscriber(email = email)
+    new_subscriber.save_subscriber()
+    mail_message("Subscribed to D-Blog","email/welcome",new_subscriber.email,new_subscriber=new_subscriber)
+    return redirect(url_for('main.index'))
+
 
