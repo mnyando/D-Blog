@@ -10,7 +10,8 @@ from ..email import mail_message
 @main.route('/')
 def index():
     quotes = get_quotes()
-    blogs = Blog.query.order_by(Blog.posted.desc()).limit(10).all()
+    page = request.args.get('page',1, type = int )
+    blogs = Blog.query.paginate(page = page, per_page = 5)
     return render_template('index.html', quote = quotes,blogs=blogs)
 
 @main.route('/profile/<name>')
@@ -95,6 +96,16 @@ def subscribe():
     new_subscriber.save_subscriber()
     mail_message("Subscribed to D-Blog","email/welcome_subscriber",new_subscriber.email,new_subscriber=new_subscriber)
     flash('Sucessfuly subscribed')
+    return redirect(url_for('main.index'))
+
+@main.route('/blog/<blog_id>/delete', methods = ['POST'])
+@login_required
+def delete_post(blog_id):
+    blog = Blog.query.get(blog_id)
+    if blog.user != current_user:
+        abort(403)
+    blog.delete()
+    flash("You have deleted your Blog succesfully!")
     return redirect(url_for('main.index'))
 
 

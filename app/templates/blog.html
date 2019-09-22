@@ -45,7 +45,7 @@
                 <i class="fas fa-times fa-4x animated rotateIn"></i>
               </div>
               <div class="modal-footer flex-center">
-                <form action="{{url_for('main.delete_post',post_id = post.id)}}" method="POST">
+                <form action="{{url_for('main.delete_post',blog_id = blog.id)}}" method="POST">
                     <input  type="submit" class="btn  btn-outline-danger btn-sm" value="Yes">
                 </form>
                 <a type="button" class="btn btn-sm btn-danger waves-effect" data-dismiss="modal">No</a>
