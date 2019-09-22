@@ -1,10 +1,35 @@
 {% extends 'base.html'%}
 
 {% block content %}
-    <h1>hello</h1>
     <div class="container">
+        <h1 class="text-center"> Welcome to my blog</h1>
         <div class="row">
-            <div class="col-md-9"></div>
+            <div class="col-md-9">
+                {% for blog in blogs %}
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Tittle: {{blog.title}}</p>
+                            <p>{{blog.content}}</p>
+                            <p>Posted: {{blog.posted.strftime('%d-%m-%Y')}}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <form class="form-inline">
+                                <div class="md-form form-group">
+                                    <!-- <i class="fa fa-lock prefix"></i> -->
+                                    <label for="form92">Type your comment</label>
+                                    <input type="text"  class="form-control">
+                                    
+                                </div>
+                                <div class="md-form form-group">
+                                    <button class="btn btn-sm btn-outline-info">Comment</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <hr>    
+                {% endfor %}   
+            </div>
             <div class="col-md-3">
                 <p>{{quote.author}}</p>
                 <p>{{quote.quote}}</p>
