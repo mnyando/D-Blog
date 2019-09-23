@@ -9,7 +9,6 @@
   }
   .landing{
       margin-top: 2%;
-
   }
   .blog-img{
     height: 80px;
@@ -24,7 +23,7 @@
       display: none;
   }
   .cardquote{
-      background-color:rgba(116, 116, 116, 0.486);
+      background-color:rgba(116, 116, 116, 0.786);
       padding: 3%;
   }
   #submit{
@@ -38,5 +37,22 @@
       background-color: #315B96;
   }
   body{
-    background-color: rgba(49, 91, 150, 0.342);   
+    color: white;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    font-family: 'Prompt', sans-serif;  
+  }
+  .bg{
+      background-color: rgba(255, 255, 255, 0.824);
+      padding: 4px;
+      color: black;
+      border-radius: 6px;
+  }
+  h1,h4{
+    font-family: 'El Messiri', sans-serif;
+  }
+  .black{
+      color: black;
   }
