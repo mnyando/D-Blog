@@ -109,7 +109,6 @@ def updateblog(blog_id):
 @main.route('/comment/<blog_id>', methods = ['Post','GET'])
 @login_required
 def comment(blog_id):
-   
     comment =request.form.get('newcomment')
     new_comment = Comment(comment = comment, user_id = current_user._get_current_object().id, blog_id=blog_id)
     new_comment.save()

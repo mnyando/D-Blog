@@ -1,34 +1,46 @@
 {% extends 'base.html'%}
 
 {% block content %}
-    <div class="container">
-        <a class="btn btn-sm btn-info" href="{{url_for('main.new_blog')}}">Post</a>
-        <h1 class="text-center"> Welcome to my blog</h1>
+    <div class="container landing">
+        <div class="row ">
+                {% if current_user.is_authenticated %}
+                <div class="col-md-3 "><a class="btn btn-sm btn-info " id="ref" href="{{url_for('main.new_blog')}}">Post</a></div>
+                {% endif %}
+            
+            <div class="col-md-9 "><h1 >Welcome to D-Blog</h1></div>
+        </div>
+
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 {% for blog in blogs.items %}
                     <hr>
                     <div class="row">
-                        <div class="col-md-7">
-                            <p>By  <a href="{{url_for('main.user_posts',username = blog.user.username)}}"><span style="color: blue">{{blog.user.username}}</span> </a>  on {{blog.posted.strftime('%d-%m-%Y')}}</p>
-                            <h3>Tittle: <a href="{{url_for('main.blog',id = blog.id)}}">{{blog.title}}</a></h3>
-                            <p>{{blog.content}}</p>
-                            <p>{{blog.comment.count()}} Comments</p>
+                        <div class="col-md-2 ">
+                                <img class="rounded-circle blog-img mr-10" src="{{ url_for('static', filename='photos/' + blog.user.profile_pic_path) }}">
+                                <p id="usern"><a href="{{url_for('main.user_posts',username = blog.user.username)}}"><span  style="color: blue"><strong>{{blog.user.username | title}}</strong></span> </a> </p> 
                         </div>
-                        <div class="col-md-5">
-                            <form class="form-inline" action="{{url_for('main.comment',blog_id = blog.id)}}" method="POST">
+                        <div class="col-md-6 ml-10">
+                            <p>Posted on : {{blog.posted.strftime('%d-%m-%Y')}}</p>
+                            <h4><a href="{{url_for('main.blog',id = blog.id)}}">{{blog.title | upper}}</a></h4>
+                            <p>{{blog.content}}</p>
+                            <p >{{blog.comment.count()}} Comments</p>
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-sm btn-info" id="profbutton">Comment</button>
+                            <form class="form-inline" id="form" action="{{url_for('main.comment',blog_id = blog.id)}}" method="POST">
                                 <div class="md-form form-group">
                                     <!-- <i class="fa fa-lock prefix"></i> -->
                                     <label for="form92">Type your comment</label>
                                     <input type="text"  class="form-control" name ="newcomment" required>
                                 </div>
                                 <div class="md-form form-group">
-                                    <button class="btn btn-sm btn-outline-info">Comment</button>
+                                    <button class="btn btn-sm btn-outline-info" id="submit">Comment</button>
                                 </div>
                             </form>
                         </div>
-                    </div>  
-                    <hr>    
+                    </div> 
+                    <hr>   
                 {% endfor %}
 
                 {% for page_num in blogs.iter_pages(left_edge = 1, right_edge = 1, left_current=1, right_current = 2) %}
@@ -44,24 +56,32 @@
                 {% endfor %}  
 
             </div>
-            <div class="col-md-4">
-                <h4>Here is a Quote for you by: <span style="color: blue">{{quote.author}}</span> </h4>
-                <p>{{quote.quote}}</p>
-                {% for message in get_flashed_messages() %}
-                <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{ message }}
+            <div class="col-md-5">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>A quote by: <span style="color: blue">{{quote.author}}</span> </h4>
+                        </div>
+                        <p class="card-text">{{quote.quote}}</p>
+                    </div>
                 </div>
-                {% endfor %}
-                <form class="form-inline" action="{{url_for('main.subscribe')}}" method="POST">
-                    <div class="md-form form-group">
-                        <label for="form92">Enter Email Address...</label>
-                        <input type="email"  class="form-control" name ="subscriber" required>
+                <div class="container-fluid">
+                    {% for message in get_flashed_messages() %}
+                    <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message }}
                     </div>
-                    <div class="md-form form-group">
-                        <button class="btn btn-sm btn-outline-info">Subscribe</button>
-                    </div>
-                </form>
+                    {% endfor %}
+                    <form class="form-inline" action="{{url_for('main.subscribe')}}" method="POST">
+                        <div class="md-form form-group">
+                            <label for="form92">Email Address...</label>
+                            <input type="email"  class="form-control" name ="subscriber" required>
+                        </div>
+                        <div class="md-form form-group">
+                            <button class="btn btn-sm btn-outline-info" id="subs">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

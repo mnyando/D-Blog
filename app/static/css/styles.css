@@ -7,3 +7,30 @@
     margin-right: 20px;
     margin-bottom: 16px;
   }
+  .landing{
+      margin-top: 2%;
+
+  }
+  .blog-img{
+    height: 80px;
+    width: 80px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+  }
+  #usern{
+      margin-left: 20px;
+  }
+  #form{
+      display: none;
+  }
+  .card{
+      background-color:rgba(116, 116, 116, 0.486);
+      padding: 3%;
+  }
+  #submit{
+      background-color: green;
+      border-radius: 6px;
+  }
+  #profbutton,#ref,#subs{
+    border-radius: 5px;  
+  }
