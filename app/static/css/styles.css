@@ -34,3 +34,9 @@
   #profbutton,#ref,#subs{
     border-radius: 5px;  
   }
+  .navbarbg{
+      background-color: #315B96;
+  }
+  body{
+    background-color: rgba(49, 91, 150, 0.342);   
+  }
