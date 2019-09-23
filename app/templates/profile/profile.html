@@ -17,16 +17,29 @@
                 <span class="text-danger">{{ error }}</span></br>
               {% endfor %}
             {%endif%}
-              <div class="media">
-                  <img class="rounded-circle account-img" src="{{profile_pic_path}}">
-                  <div class="media-body">
-                      <h2 class="account-heading">{{current_user.username}}</h2>
-                      <p class="text-secondary">{{current_user.email}}</p>
-                  </div>
-              </div>
-              {{wtf.quick_form(form)}} 
-          </div>
+    <div class="card testimonial-card">
+    <div class="card-up indigo lighten-1"></div>
+    <div class="avatar mx-auto white">
+      <img src="{{profile_pic_path}}" class="rounded-circle account-img mt-2" alt="woman avatar">
     </div>
+    <div class="card-body">
+      <h4 class="card-title text-center">{{current_user.username|title}}</h4>
+      <hr>
+      <p> {{current_user.email}} </p>
+      <p><i class="fas fa-quote-left"></i> {{current_user.bio}} <i class="fas fa-quote-right"></i> </p>
+      <button class="btn btn-sm btn-info" id="showform"> Update Profile</button>
+    </div>
+      
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+      <div class="container mt-4" >
+        <div id="profileupdate">
+          <h2>Update Your Profile Here</h2>
+            {{wtf.quick_form(form)}}
+        </div>
+      </div>
   </div>
 </div>
 {% endblock %}

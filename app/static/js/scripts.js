@@ -7,4 +7,16 @@ $(document).ready(function(){
       $("#profbutto").slideUp('1500');
       $("#form").slideDown('1500');
     });
+
+
+
+    $("#showform").click(function(){
+        $("#profileupdate").slideDown('2500');
+      });
+      $("#submit").click(function(){
+        $("#profileupdate").slideUp('1500');
+  
+      });
+    
   });
+ 

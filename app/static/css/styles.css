@@ -2,8 +2,8 @@
     padding: 20px;
 }
 .account-img {
-    height: 150px;
-    width: 150px;
+    height: 250px;
+    width: 250px;
     margin-right: 20px;
     margin-bottom: 16px;
   }
@@ -20,16 +20,16 @@
   #usern{
       margin-left: 20px;
   }
-  #form{
+  #form,#profileupdate{
       display: none;
   }
-  .card{
+  .cardquote{
       background-color:rgba(116, 116, 116, 0.486);
       padding: 3%;
   }
   #submit{
       background-color: green;
-      border-radius: 6px;
+      border-radius: 5px;
   }
   #profbutton,#ref,#subs{
     border-radius: 5px;  
