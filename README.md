@@ -4,32 +4,33 @@
 [Owiti-Charles](https://github.com/Owiti-Charles)
 
 # Description
-This  is a flask application that allows users to post one minute pitches and also allows other users who have signed up to comment and upvote or downvote a pitch. It also allows a person to signup to be able to access the functionalities of the application
+This  is a flask application that allows writers to post blogs, edit and delite blogs. It also allows users who have signed up to comment on the blogs that has been posted by a writer. It also allows a person to subscribed to recieve email everytime a new blog is posted by a writer.
 
 ## Live Link
-[View Site](https://pitchworldcha.herokuapp.com)
+[View Site]()
 
 ## Screenshot
 
-<img src="https://raw.githubusercontent.com/Owiti-Charles/pitch-world/master/app/static/photos/scrnew.png" width="900px" height="440px">
+<img src="" width="900px" height="440px">
 
 ## User Story
 
-* Comment on the different pitches posted py other uses.
-* See the pitches posted by other uses.
-* Vote on s pitch they have viwed by giving it a upvote or a downvote.
+* A user can view the most recent posts.
+* View and comment the blog posts on the site.
+* A user should an email alert when a new post is made by joining a subscription.
 * Register to be allowed to log in to the application
-* View pitches from the different categories.
-* Submit a pitch to a specific category of their choice.
+* A user sees random quotes on the site
+* A writer can create a blog from the application and update or delete blogs I have created.
 
 ## BDD
 | Behaviour | Input | Output |
 | :---------------- | :---------------: | ------------------: |
-| Load the page | **On page load** | Get all posts, Select between signup and login|
+| Load the page | **On page load** | Get all blogs, Select between signup and login|
 | Select SignUp| **Email**,**Username**,**Password** | Redirect to login|
-| Select Login | **Username** and **password** | Redirect to page with app pitches based on categories and commenting section|
+| Select Login | **Username** and **password** | Redirect to page with blogs that have been posted by writes and be able to subscribe to the blog|
 | Select comment button | **Comment** | Form that you input your comment|
 | Click on submit |  | Redirect to all comments tamplate with your comment and other comments|
+|Subscription | **Email Address**| Flash message "Succesfully subsbribed to D-Blog"|
 
 
 
@@ -40,11 +41,11 @@ To get the code..
 
 1. Cloning the repository:
   ```bash
-  https://github.com/Owiti-Charles/pitch-world.git
+  https://github.com/Owiti-Charles/D-Blog.git
   ```
 2. Move to the folder and install requirements
   ```bash
-  cd pitch-world
+  cd D-Blog
   pip install -r requirements.txt
   ```
 3. Exporting Configurations
@@ -53,11 +54,11 @@ To get the code..
   ```
 4. Running the application
   ```bash
-  python3.6 manage.py server
+  python manage.py server
   ```
 5. Testing the application
   ```bash
-  python3.6 manage.py test
+  python manage.py test
   ```
 Open the application on your browser `127.0.0.1:5000`.
 
