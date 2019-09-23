@@ -18,10 +18,11 @@ def index():
 @login_required
 def profile(name):
     user = User.query.filter_by(username = name).first()
+    profile_pic_path = url_for('static',filename = 'photos/'+ current_user.profile_pic_path)
     if user == None:
         abort(404)
    
-    return render_template('profile/profile.html',user = user)
+    return render_template('profile/profile.html',user = user, profile_pic_path=profile_pic_path)
 
 @main.route('/user/<name>/updateprofile', methods = ['POST','GET'])
 @login_required
