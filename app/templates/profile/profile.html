@@ -1,11 +1,22 @@
 {% extends 'base.html'%}
-
+{% import 'bootstrap/wtf.html' as wtf %}
 {% block content %}
 <div class="container">
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-4">
         <div class="content-section mt-4">
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+            </div>
+            {% endfor %}
+            {% if errors %}
+              {% for error in errors %}
+                <span class="text-danger">{{ error }}</span></br>
+              {% endfor %}
+            {%endif%}
               <div class="media">
                   <img class="rounded-circle account-img" src="{{profile_pic_path}}">
                   <div class="media-body">
@@ -13,6 +24,7 @@
                       <p class="text-secondary">{{current_user.email}}</p>
                   </div>
               </div>
+              {{wtf.quick_form(form)}} 
           </div>
     </div>
   </div>
