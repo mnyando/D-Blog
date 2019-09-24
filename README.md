@@ -11,7 +11,7 @@ This  is a flask application that allows writers to post blogs, edit and delite 
 
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/Owiti-Charles/D-Blog/master/app/static/photos/screenshot%2C%2C.png" width="900px" height="440px">
+<img src="https://raw.githubusercontent.com/Owiti-Charles/D-Blog/master/app/static/photos/homepage.png" width="900px" height="440px">
 <img src="https://raw.githubusercontent.com/Owiti-Charles/D-Blog/master/app/static/photos/profile.png" width="900px" height="440px">
 <img src="https://raw.githubusercontent.com/Owiti-Charles/D-Blog/master/app/static/photos/comment.png" width="900px" height="440px">
 
