@@ -11,7 +11,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-7 ">
+            <div class="col-md-8 ">
                 {% for blog in blogs.items %}
                     <div class="container bg mb-2">
                         <hr>
@@ -20,25 +20,12 @@
                                     <img class="rounded-circle blog-img mr-10" src="{{ url_for('static', filename='photos/' + blog.user.profile_pic_path) }}">
                                     <p id="usern"><a href="{{url_for('main.user_posts',username = blog.user.username)}}"><span  style="color: blue"><strong>{{blog.user.username | title}}</strong></span> </a> </p> 
                             </div>
-                            <div class="col-md-5 ml-10 ">
+                            <div class="col-md-10 pr-4 d-justify userblog">
                                 <p>Posted on : {{blog.posted.strftime('%d-%m-%Y')}}</p>
                                 <h4><a href="{{url_for('main.blog',id = blog.id)}}">{{blog.title | upper}}</a></h4>
                                 <p>{{blog.content}}</p>
-                                <p >{{blog.comment.count()}} Comments</p>
+                                <p> <a class="btn btn-sm btn-info" href="{{url_for('main.blog',id = blog.id)}}" > Comment</a> {{blog.comment.count()}} Comments</p>
                                 
-                            </div>
-                            <div class="col-md-5">
-                                <button class="btn btn-sm btn-info" id="profbutton">Comment</button>
-                                <form class="form-inline" id="form" action="{{url_for('main.comment',blog_id = blog.id)}}" method="POST">
-                                    <div class="md-form form-group">
-                                        <!-- <i class="fa fa-lock prefix"></i> -->
-                                        <label class="black-color">Type your comment</label>
-                                        <input type="text"  class="form-control black-color " name ="newcomment" required>
-                                    </div>
-                                    <div class="md-form form-group">
-                                        <button class="btn btn-sm btn-outline-info" id="submit">Comment</button>
-                                    </div>
-                                </form>
                             </div>
                         </div> 
                         <hr>
@@ -59,7 +46,7 @@
                 {% endfor %}  
 
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="container">
                     <div class="card cardquote">
                         <div class="card-title">
@@ -75,7 +62,7 @@
                     {{ message }}
                     </div>
                     {% endfor %}
-                    <form class="form-inline ml-4" action="{{url_for('main.subscribe')}}" method="POST">
+                    <form class="form-inline ml-2" action="{{url_for('main.subscribe')}}" method="POST">
                         <div class="md-form form-group">
                             <label class="white-color">Email Address...</label>
                             <input type="email"  class="form-control " name ="subscriber" required>
@@ -88,4 +75,5 @@
             </div>
         </div>
     </div>
+
 {% endblock %}
