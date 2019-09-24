@@ -1,9 +1,9 @@
 import unittest
-from app.models import Comment, User, log
+from app.models import Blog, User,
 from app import db
 
 
-class PitchModelTest(unittest.TestCase):
+class BlogModelTest(unittest.TestCase):
     def setUp(self):
         self.user_charles = User(username='cha', password='chako', email='test@test.com')
         self.new_blog = Blog(id=1, title='Test', content='This is a test blog', user_id=self.user_charles.id)
@@ -17,7 +17,7 @@ class PitchModelTest(unittest.TestCase):
         self.assertEquals(self.new_blog.content, 'This is a test blog')
         self.assertEquals(self.new_blog.user_id, self.user_charles.id)
 
-    def test_save_pitch(self):
+    def test_save_blog(self):
         self.new_blog.save()
         self.assertTrue(len(Blog.query.all()) > 0)
 
